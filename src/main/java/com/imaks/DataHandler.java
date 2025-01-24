@@ -4,18 +4,23 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class DataHandler {
 
-    String[] fruits = new DataRepository().getData();
+    private final String[] fruits;
+
+    public DataHandler(String[] fruits) {
+        this.fruits = fruits;
+    }
 
     public void getOutput() {
         // критичний блок коду
         synchronized (this) {
             StringBuilder sb = new StringBuilder();
+            sb.append(Thread.currentThread().getName()).append(": ");
             AtomicInteger count = new AtomicInteger(1);
             for (String fruit : fruits) {
                 sb.append(String.format("(%d) %s ",
                         count.getAndIncrement(), fruit));
             }
-            System.out.println(Thread.currentThread().getName() + ": " + sb);
+            System.out.println(sb);
         }
     }
 }

@@ -2,7 +2,7 @@ package com.imaks;
 
 public class DataRepository {
 
-    public String[] getData() {
+    public static String[] getData() {
         return new String[] {"orange", "apple", "plum", "mango"};
     }
 }
